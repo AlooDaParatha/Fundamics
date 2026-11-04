@@ -1,0 +1,49 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── DENY EVERYTHING BY DEFAULT ──
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // ── ADMISSION INQUIRIES ──
+    match /admissionInquiries/{docId} {
+
+      // Anyone (public) can submit a new enquiry — but only create, not read/edit/delete
+      allow create: if
+        request.resource.data.keys().hasAll(['studentName', 'parentName', 'email', 'phone', 'class']) &&
+        request.resource.data.studentName is string &&
+        request.resource.data.studentName.size() > 0 &&
+        request.resource.data.studentName.size() <= 100 &&
+        request.resource.data.parentName is string &&
+        request.resource.data.parentName.size() > 0 &&
+        request.resource.data.parentName.size() <= 100 &&
+        request.resource.data.email is string &&
+        request.resource.data.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$') &&
+        request.resource.data.phone is string &&
+        request.resource.data.phone.size() >= 7 &&
+        request.resource.data.phone.size() <= 15 &&
+        request.resource.data['class'] is string &&
+        request.resource.data['class'].size() > 0 &&
+        // Optional fields — if present, must be strings under 500 chars
+        (!('stream' in request.resource.data) || (request.resource.data.stream is string && request.resource.data.stream.size() <= 100)) &&
+        (!('message' in request.resource.data) || (request.resource.data.message is string && request.resource.data.message.size() <= 500)) &&
+        // Status must not be set manually by public — only admin can set it
+        (!('status' in request.resource.data) || request.resource.data.status == 'pending');
+
+      // Only authenticated admins can read, update, or delete
+      allow read: if request.auth != null;
+
+      allow update: if
+        request.auth != null &&
+        // Can only change the 'status' field — nothing else
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']) &&
+        request.resource.data.status in ['pending', 'enquired'];
+
+      allow delete: if request.auth != null;
+    }
+
+  }
+}

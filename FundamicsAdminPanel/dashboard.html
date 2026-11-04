@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundemics Admin Dashboard</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0a0f1e;
+            --navy-mid: #0d1425;
+            --navy-light: #131e30;
+            --surface: #ffffff;
+            --surface-2: #f8fafc;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --red: #ef4444;
+            --red-soft: #fef2f2;
+            --amber: #f59e0b;
+            --amber-soft: #fffbeb;
+            --emerald: #10b981;
+            --emerald-soft: #ecfdf5;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.12);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            background: #eef2f7;
+            min-height: 100vh;
+            color: var(--text);
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: linear-gradient(135deg, var(--navy) 0%, #0f1f3d 100%);
+            color: white;
+            padding: 0 28px;
+            height: 68px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .header-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .header-subtitle {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-left: 2px;
+        }
+
+        header button {
+            padding: 9px 18px;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            letter-spacing: 0.02em;
+            transition: background 0.2s, border-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        header button:hover {
+            background: rgba(239, 68, 68, 0.22);
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+
+        /* ── PAGE CONTENT ── */
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* ── PAGE TITLE ── */
+        .page-heading {
+            margin-bottom: 28px;
+        }
+
+        .page-heading h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 0 0 4px;
+        }
+
+        .page-heading p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        /* ── TABS ── */
+        .tabs {
+            display: flex;
+            gap: 6px;
+            background: white;
+            border-radius: 12px;
+            padding: 6px;
+            margin-bottom: 28px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            width: fit-content;
+        }
+
+        .tabs button {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tabs button .tab-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.5;
+        }
+
+        .tabs button.active {
+            background: var(--navy);
+            color: white;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+        }
+
+        .tabs button.active .tab-dot {
+            opacity: 1;
+            background: var(--gold);
+        }
+
+        /* ── ENQUIRY SECTION ── */
+        .enquiry-section {
+            padding: 0;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            opacity: 0.4;
+        }
+
+        .empty-state p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        /* ── ENQUIRY CARD ── */
+        .enquiry-card {
+            background: var(--surface);
+            padding: 0;
+            margin-bottom: 16px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: box-shadow 0.2s, transform 0.2s;
+            animation: slideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .enquiry-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--navy) 0%, #0f1f3d 100%);
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--navy);
+            font-family: 'Playfair Display', serif;
+            flex-shrink: 0;
+        }
+
+        .student-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .class-badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--gold-light);
+            font-size: 11px;
+            font-weight: 500;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-top: 3px;
+            letter-spacing: 0.04em;
+        }
+
+        .card-body {
+            padding: 22px 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 20px;
+        }
+
+        .info-row {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .info-row.full {
+            grid-column: 1 / -1;
+        }
+
+        .info-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 400;
+        }
+
+        .info-value a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        .info-value a:hover {
+            text-decoration: underline;
+        }
+
+        .card-footer {
+            padding: 14px 24px;
+            background: var(--surface-2);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-btn {
+            padding: 9px 22px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            letter-spacing: 0.03em;
+            transition: transform 0.15s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .status-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .status-btn:active {
+            transform: translateY(0);
+        }
+
+        .pending-btn {
+            background: var(--amber-soft);
+            color: #92400e;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+        }
+
+        .pending-btn:hover {
+            box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25);
+        }
+
+        .enquired-btn {
+            background: var(--emerald-soft);
+            color: #065f46;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+        }
+
+        .enquired-btn:hover {
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+        }
+
+        .spam-btn {
+            background: var(--red-soft);
+            color: #991b1b;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+        }
+
+        .spam-btn:hover {
+            background: #fee2e2;
+            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.22);
+        }
+
+        /* ── CONFIRM MODAL ── */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(10, 15, 30, 0.7);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.18s ease both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal {
+            background: white;
+            border-radius: 18px;
+            padding: 36px 32px;
+            width: 380px;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            animation: popIn 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.92) translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-icon {
+            font-size: 36px;
+            margin-bottom: 14px;
+        }
+
+        .modal h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 0 0 8px;
+        }
+
+        .modal p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin: 0 0 26px;
+            line-height: 1.6;
+        }
+
+        .modal-name {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .modal-cancel {
+            padding: 10px 24px;
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text-muted);
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            transition: background 0.15s;
+        }
+
+        .modal-cancel:hover {
+            background: var(--surface-2);
+        }
+
+        .modal-confirm {
+            padding: 10px 24px;
+            border: none;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .modal-confirm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.45);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left">
+            <div class="header-logo">F</div>
+            <div>
+                <div class="header-title">Fundemics</div>
+                <div class="header-subtitle">Admin Panel</div>
+            </div>
+        </div>
+        <button id="logoutBtn">⎋ &nbsp;Logout</button>
+    </header>
+
+    <div class="page">
+        <div class="page-heading">
+            <h1>Admission Enquiries</h1>
+            <p>Review and manage all incoming admission requests</p>
+        </div>
+
+        <div class="tabs">
+            <button id="pendingTab" class="active">
+                <span class="tab-dot"></span> Pending
+            </button>
+            <button id="enquiredTab">
+                <span class="tab-dot"></span> Enquired
+            </button>
+        </div>
+
+        <section class="enquiry-section">
+            <div id="enquiryContainer"></div>
+        </section>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut }
+            from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+        import { getFirestore, collection, getDocs, query, where, updateDoc, doc, deleteDoc }
+            from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCtOF7VYHVBraOnml8VksUo_1vPp5fKdlU",
+            authDomain: "fundemicstutorialss.firebaseapp.com",
+            projectId: "fundemicstutorialss",
+            appId: "1:1017511766005:web:3cfb38921e7585b00aa22bc"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const container = document.getElementById("enquiryContainer");
+        const pendingTab = document.getElementById("pendingTab");
+        const enquiredTab = document.getElementById("enquiredTab");
+
+        let currentStatus = "pending";
+
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = "login.html";
+            } else {
+                loadEnquiries("pending");
+            }
+        });
+
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+            await signOut(auth);
+            window.location.href = "login.html";
+        });
+
+        pendingTab.onclick = () => {
+            currentStatus = "pending";
+            setActiveTab();
+            loadEnquiries("pending");
+        };
+
+        enquiredTab.onclick = () => {
+            currentStatus = "enquired";
+            setActiveTab();
+            loadEnquiries("enquired");
+        };
+
+        function setActiveTab() {
+            pendingTab.classList.remove("active");
+            enquiredTab.classList.remove("active");
+            if (currentStatus === "pending") {
+                pendingTab.classList.add("active");
+            } else {
+                enquiredTab.classList.add("active");
+            }
+        }
+
+        async function loadEnquiries(status) {
+            const snapshot = await getDocs(collection(db, "admissionInquiries"));
+            container.innerHTML = "";
+
+            let count = 0;
+
+            snapshot.forEach(docSnap => {
+                const data = docSnap.data();
+                const id = docSnap.id;
+                const enquiryStatus = data.status || "pending";
+                if (enquiryStatus !== status) return;
+
+                count++;
+                const initials = (data.studentName || "?")[0].toUpperCase();
+
+                const card = document.createElement("div");
+                card.className = "enquiry-card";
+                card.style.animationDelay = `${(count - 1) * 0.06}s`;
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <div class="avatar">${initials}</div>
+                            <div>
+                                <div class="student-name">${data.studentName}</div>
+                                <span class="class-badge">Class ${data.class}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-row">
+                            <span class="info-label">Parent / Guardian</span>
+                            <span class="info-value">${data.parentName}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Stream</span>
+                            <span class="info-value">${data.stream || "N/A"}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Email</span>
+                            <span class="info-value"><a href="mailto:${data.email}">${data.email}</a></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Phone</span>
+                            <span class="info-value"><a href="tel:${data.phone}">${data.phone}</a></span>
+                        </div>
+                        <div class="info-row full">
+                            <span class="info-label">Message</span>
+                            <span class="info-value">${data.message || "No message provided."}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer" id="footer-${id}"></div>
+                `;
+
+                const footer = card.querySelector(`#footer-${id}`);
+                const btn = document.createElement("button");
+
+                if (enquiryStatus === "pending") {
+                    btn.textContent = "✓  Mark as Enquired";
+                    btn.className = "status-btn enquired-btn";
+                    btn.onclick = () => updateStatus(id, "enquired");
+                } else {
+                    btn.textContent = "↩  Mark as Pending";
+                    btn.className = "status-btn pending-btn";
+                    btn.onclick = () => updateStatus(id, "pending");
+                }
+
+                const spamBtn = document.createElement("button");
+                spamBtn.textContent = "⚑  Report as Spam";
+                spamBtn.className = "status-btn spam-btn";
+                spamBtn.onclick = () => confirmSpam(id, data.studentName);
+
+                footer.appendChild(spamBtn);
+                footer.appendChild(btn);
+                container.appendChild(card);
+            });
+
+            if (count === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">${status === 'pending' ? '📭' : '✅'}</div>
+                        <p>No ${status} enquiries found.</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function updateStatus(id, newStatus) {
+            await updateDoc(doc(db, "admissionInquiries", id), {
+                status: newStatus
+            });
+            loadEnquiries(currentStatus);
+        }
+
+        function confirmSpam(id, name) {
+            const backdrop = document.createElement("div");
+            backdrop.className = "modal-backdrop";
+            backdrop.innerHTML = `
+                <div class="modal">
+                    <div class="modal-icon">🚫</div>
+                    <h3>Report as Spam?</h3>
+                    <p>This will permanently delete <span class="modal-name">${name}'s</span> enquiry from the database. This action cannot be undone.</p>
+                    <div class="modal-actions">
+                        <button class="modal-cancel" id="cancelSpam">Cancel</button>
+                        <button class="modal-confirm" id="confirmSpamBtn">Delete Permanently</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(backdrop);
+            backdrop.querySelector("#cancelSpam").onclick = () => backdrop.remove();
+            backdrop.querySelector("#confirmSpamBtn").onclick = async () => {
+                await deleteEnquiry(id);
+                backdrop.remove();
+            };
+            backdrop.onclick = (e) => { if (e.target === backdrop) backdrop.remove(); };
+        }
+
+        async function deleteEnquiry(id) {
+            await deleteDoc(doc(db, "admissionInquiries", id));
+            loadEnquiries(currentStatus);
+        }
+    </script>
+
+</body>
+
+</html>

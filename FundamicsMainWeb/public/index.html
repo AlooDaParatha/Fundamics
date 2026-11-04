@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundemics Tutorials – Shaping Young Minds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<script type="module" src="js/contact-form.js"></script>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header id="mainHeader">
+        <div class="logo">
+            <span class="logo-icon">F</span>
+            <span class="logo-text">FUNDEMICS <em>Tutorials</em></span>
+        </div>
+        <nav id="navMenu">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#courses">Courses</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="nav-cta" onclick="scrollToContact()">Enroll Now</button>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Premier Coaching Since 2014 · Lucknow</div>
+            <h1>Shaping<br><em>Young Minds,</em><br>Building Bright Futures</h1>
+            <p class="hero-sub">Excellence in education across CBSE, ICSE, JEE & NEET preparation — three branches, one
+                mission.</p>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="scrollToContact()">
+                    <span>Enroll Now</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+                <a href="#about" class="btn-ghost">Discover More</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card-float card-1">
+                <div class="hc-icon">🎯</div>
+                <div>
+                    <strong>100% Focused</strong>
+                    <span>Personalized attention</span>
+                </div>
+            </div>
+            <div class="hero-card-float card-2">
+                <div class="hc-icon">📈</div>
+                <div>
+                    <strong>Results Driven</strong>
+                    <span>Proven track record</span>
+                </div>
+            </div>
+            <div class="hero-main-visual">
+                <div class="visual-ring ring-1"></div>
+                <div class="visual-ring ring-2"></div>
+                <div class="visual-ring ring-3"></div>
+                <div class="visual-center">
+                    <span>10+</span>
+                    <small>Years of<br>Excellence</small>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stat-item" data-delay="0">
+            <div class="stat-num">10<span>+</span></div>
+            <div class="stat-label">Years of Excellence</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" data-delay="100">
+            <div class="stat-num">100<span>+</span></div>
+            <div class="stat-label">Students Guided</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" data-delay="200">
+            <div class="stat-num">25<span>+</span></div>
+            <div class="stat-label">Schools Covered</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" data-delay="300">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Branches in Lucknow</div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about-section">
+        <div class="section-label">Who We Are</div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>A Legacy of <em>Academic Excellence</em></h2>
+                <p>Fundemics Tutorials LLP is a premier coaching institute in Lucknow committed to quality education and
+                    holistic academic development. Since 2014, we've helped hundreds of students realise their potential
+                    through structured learning and dedicated mentorship.</p>
+                <p>Our expert faculty, proven methodologies, and personalised approach set us apart from conventional
+                    coaching institutes.</p>
+                <div class="about-highlights">
+                    <div class="highlight-pill">Expert Faculty</div>
+                    <div class="highlight-pill">Small Batches</div>
+                    <div class="highlight-pill">Regular Tests</div>
+                    <div class="highlight-pill">Parent Updates</div>
+                </div>
+            </div>
+            <div class="about-right">
+                <div class="vision-card">
+                    <div class="vision-icon">✦</div>
+                    <h3>Our Vision</h3>
+                    <p>Empowering students with strong foundations and disciplined study habits for long-term academic
+                        and personal success.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">◈</div>
+                    <h3>Our Mission</h3>
+                    <p>Nurturing each student's unique potential through accountability, performance analysis, and
+                        career-oriented guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section features-section">
+        <div class="section-label">Our Differentiators</div>
+        <h2>What Makes <em>Us Different?</em></h2>
+        <div class="features-grid">
+            <div class="feature-card" style="--i:0">
+                <div class="feature-num">01</div>
+                <div class="feature-icon">⚡</div>
+                <h4>Accountability</h4>
+                <p>Regular follow-ups ensure students stay on track with their academic goals.</p>
+            </div>
+            <div class="feature-card" style="--i:1">
+                <div class="feature-num">02</div>
+                <div class="feature-icon">🔍</div>
+                <h4>Potential Recognition</h4>
+                <p>We identify and nurture each student's unique strengths from day one.</p>
+            </div>
+            <div class="feature-card" style="--i:2">
+                <div class="feature-num">03</div>
+                <div class="feature-icon">📋</div>
+                <h4>Structured Practice</h4>
+                <p>Systematic worksheets and test series for comprehensive subject mastery.</p>
+            </div>
+            <div class="feature-card" style="--i:3">
+                <div class="feature-num">04</div>
+                <div class="feature-icon">🧭</div>
+                <h4>Career Guidance</h4>
+                <p>Expert counselling to help students choose the right academic path.</p>
+            </div>
+            <div class="feature-card" style="--i:4">
+                <div class="feature-num">05</div>
+                <div class="feature-icon">📊</div>
+                <h4>Performance Analysis</h4>
+                <p>Detailed reports keep parents informed about student progress.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COURSES -->
+    <section id="courses" class="section courses-section">
+        <div class="section-label">What We Offer</div>
+        <h2>Courses & <em>Streams</em></h2>
+        <div class="courses-grid">
+            <div class="course-card primary-course">
+                <div class="course-tag">All Classes</div>
+                <h3>School Education</h3>
+                <p>Comprehensive coaching for Classes I through XII across all major boards.</p>
+                <ul>
+                    <li><span>Classes I – V</span> <em>Foundation</em></li>
+                    <li><span>Classes VI – VIII</span> <em>Middle School</em></li>
+                    <li><span>Classes IX – X</span> <em>Board Prep</em></li>
+                    <li><span>Classes XI – XII</span> <em>Senior Secondary</em></li>
+                </ul>
+            </div>
+            <div class="course-card">
+                <div class="course-tag">Competitive</div>
+                <h3>Entrance Exams</h3>
+                <p>Targeted preparation for top competitive examinations.</p>
+                <ul>
+                    <li><span>JEE Mains & Advanced</span></li>
+                    <li><span>NEET</span></li>
+                    <li><span>CA Foundation</span></li>
+                </ul>
+            </div>
+            <div class="course-card">
+                <div class="course-tag">Boards</div>
+                <h3>All Major Boards</h3>
+                <p>Expert guidance aligned to each board's syllabus and exam pattern.</p>
+                <ul>
+                    <li><span>CBSE</span></li>
+                    <li><span>ISC / ICSE</span></li>
+                    <li><span>UP State Board</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="section gallery-section">
+        <div class="section-label">Our Campus</div>
+        <h2>Life at <em>Fundemics</em></h2>
+        <div class="gallery-grid">
+            <div class="gallery-item large">
+                <div class="gallery-placeholder">
+                    <span>📚</span>
+                    <p>Modern Classrooms</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <span>🏆</span>
+                    <p>Award Ceremonies</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <span>🎓</span>
+                    <p>Student Activities</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <span>✍️</span>
+                    <p>Test Sessions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+        <div class="contact-header">
+            <div class="section-label">Get in Touch</div>
+            <h2>Start Your <em>Journey</em> Today</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-left">
+                <div class="contact-info-card">
+                    <div class="contact-detail">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <strong>Call Us</strong>
+                            <span>7617018888</span>
+                            <span>8181906139</span>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Head Office</strong>
+                            <span>Adarsh Puram, Triveni Nagar III</span>
+                            <span>Lucknow – 226020</span>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">🕐</div>
+                        <div>
+                            <strong>Hours</strong>
+                            <span>Mon–Sat: 7 AM – 8 PM</span>
+                            <span>Sun: 10 AM – 2 PM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-placeholder">
+                    <span>🗺️</span>
+                    <p>Google Maps Integration<br><small>Add your embed link here</small></p>
+                </div>
+            </div>
+
+            <div class="contact-right">
+                <div class="form-header">
+                    <h3>Admission Inquiry</h3>
+                    <p>Fill in the form below and we'll reach out within 24 hours.</p>
+                </div>
+                <form id="admissionForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Parent Name *</label>
+                            <input type="text" id="parentName" placeholder="Enter parent's name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Student Name *</label>
+                            <input type="text" id="studentName" placeholder="Enter student's name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone *</label>
+                            <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Class *</label>
+                            <select id="class" required>
+                                <option value="">Select Class</option>
+                                <option>Class I</option>
+                                <option>Class II</option>
+                                <option>Class III</option>
+                                <option>Class IV</option>
+                                <option>Class V</option>
+                                <option>Class VI</option>
+                                <option>Class VII</option>
+                                <option>Class VIII</option>
+                                <option>Class IX</option>
+                                <option>Class X</option>
+                                <option>Class XI</option>
+                                <option>Class XII</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Stream</label>
+                            <select id="stream">
+                                <option value="">Select Stream (optional)</option>
+                                <option>Science</option>
+                                <option>Commerce</option>
+                                <option>Arts</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group full">
+                        <label>Message</label>
+                        <textarea id="message" placeholder="Any additional information or questions..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Submit Inquiry</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                    <p id="formStatus"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-icon small">F</span>
+                <span>FUNDEMICS TUTORIALS</span>
+            </div>
+            <p>Empowering students since 2014 · Lucknow, Uttar Pradesh</p>
+            <p>© 2026 Fundemics Tutorials LLP. All rights reserved.</p>
+            <p class="footer-copy">~Made in Collaboration with Ansh Yadav and Om Srivastava</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        const toggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('navMenu');
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            toggle.classList.toggle('open');
+        });
+
+        // Close nav on link click
+        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            nav.classList.remove('active');
+            toggle.classList.remove('open');
+        }));
+
+        // Scroll to contact
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Intersection observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.feature-card, .course-card, .stat-item, .gallery-item, .about-grid, .contact-container').forEach(el => observer.observe(el));
+
+        // Form submission
+        document.getElementById('admissionForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const status = document.getElementById('formStatus');
+            const btn = this.querySelector('.submit-btn');
+            btn.innerHTML = '<span>Sending...</span>';
+            btn.disabled = true;
+            setTimeout(() => {
+                status.textContent = '✓ Thank you! We\'ll contact you within 24 hours.';
+                status.className = 'success';
+                btn.innerHTML = '<span>Submit Inquiry</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+                btn.disabled = false;
+                this.reset();
+            }, 1500);
+        });
+
+        // Stats counter animation
+        function animateCounter(el, target) {
+            let count = 0;
+            const step = Math.ceil(target / 40);
+            const timer = setInterval(() => {
+                count = Math.min(count + step, target);
+                el.querySelector('.stat-num').firstChild.textContent = count;
+                if (count >= target) clearInterval(timer);
+            }, 40);
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !e.target.dataset.counted) {
+                    e.target.dataset.counted = true;
+                    const nums = { '10': 10, '100': 100, '25': 25, '3': 3 };
+                    // simple fade-in; counter already in HTML
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.stat-item').forEach(el => statsObserver.observe(el));
+    </script>
+</body>
+
+</html>
